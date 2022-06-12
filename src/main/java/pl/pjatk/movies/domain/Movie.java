@@ -1,17 +1,26 @@
 package pl.pjatk.movies.domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "movie")
+@ApiModel(value = "Movie", description = "Movie from DB")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "Movie id",required = true)
     private Integer id;
+    @ApiModelProperty(value = "Movie title",required = true)
     private String title;
+    @ApiModelProperty(value = "Movie description",required = false)
     private String description;
+    @ApiModelProperty(value = "Movie genre",required = false)
     @Enumerated(EnumType.STRING)
     private Genres genre;
+    @ApiModelProperty(value = "Is movie available",required = false)
     private Boolean isAvailable = false;
 
     public Movie(Integer id, String title, String description, Genres genre, Boolean isAvailable) {
